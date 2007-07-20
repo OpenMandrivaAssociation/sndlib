@@ -1,21 +1,25 @@
 %define	name		sndlib
-%define	version		18
-%define	rel		4
-%define	release		%mkrel %{rel}
+# Version numbers are listed in HISTORY.sndlib. Look closely.
+%define	version		20
+# Take from the last change recorded in HISTORY.sndlib.
+%define date		20070625
+%define	rel		1
+%define	release		%mkrel 1.%{date}.%{rel}
 %define	lib_name_orig	lib%{name}
-%define	lib_name        %mklibname %{name}
+%define develname	%mklibname %{name} -d
+%define staticname	%mklibname %{name} -s -d
 
 Name:           %{name}
 Version:        %{version}
 Release:        %{release}
-Source0:	%{name}.tar.bz2
-License:	LGPL
+Source0:	ftp://ccrma-ftp.stanford.edu/pub/Lisp/%{name}.tar.gz
+License:	BSD-like
 Group:		System/Libraries
 URL:		http://www-ccrma.stanford.edu/software/snd/sndlib/
 Summary:	SndLib is a library of sound-related functions
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires: 	gsl-devel ladspa-devel lesstif-devel xpm-devel guile-devel
-BuildRequires: 	gettext alsa-lib-devel XFree86-devel gtk+-devel = 1.2.10 glibc-static-devel
+BuildRequires: 	guile-devel
+BuildRequires: 	alsa-lib-devel
 
 %description
 The sound library is a collection of sound file and audio hardware
@@ -26,13 +30,13 @@ code going). It provides relatively straightforward access to many
 sound file headers and data types, and most of the features of the
 audio hardware.
 
-%package -n	%{lib_name}-devel
+%package -n	%{develname}
 Summary:	Development tools for %name
 Group:		Development/C++
 Provides:	%{lib_name_orig}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n	%{lib_name}-devel
+%description -n	%{develname}
 The sound library is a collection of sound file and audio hardware
 handlers written in C, Forth, Scheme, Common Lisp, and Ruby, and
 running currently on SGI, Sun, Linux, Mac, HPUX, LinuxPPC, Mac OSX,
@@ -41,14 +45,14 @@ code going). It provides relatively straightforward access to many
 sound file headers and data types, and most of the features of the
 audio hardware.
 
-%package -n	%{lib_name}-static-devel
+%package -n	%{staticname}
 Summary:	sndlib static library
 Group:		Development/C++
-Requires:	%{lib_name}-devel = %{version}
+Requires:	%{develname} = %{version}
 Provides:	%{lib_name_orig}-static-devel = %{version}-%{release}
 Provides:	%{name}-static-devel = %{version}-%{release}
 
-%description -n	%{lib_name}-static-devel
+%description -n	%{staticname}
 %name static library.
 
 %prep
@@ -56,7 +60,7 @@ Provides:	%{name}-static-devel = %{version}-%{release}
 
 %build
 CFLAGS="$RPM_OPT_FLAGS -fPIC" \
-%configure2_5x
+%configure2_5x --with-alsa
 %make
 
 %install
@@ -69,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -n %{lib_name}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %doc README.sndlib HISTORY.sndlib sndins/README
 %{_bindir}/%{name}-config
@@ -77,6 +81,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib%{name}.so
 %{_includedir}/%{name}.h
 
-%files -n %{lib_name}-static-devel
+%files -n %{staticname}
 %defattr(-,root,root)
 %{_libdir}/lib%{name}.a
