@@ -2,7 +2,9 @@
 # Version numbers are listed in HISTORY.sndlib. Look closely.
 %define	version		20
 # Take from the last change recorded in HISTORY.sndlib.
-%define date		20070625
+# Actually, they don't seem to be updating it reliably, so
+# just go with today's date...
+%define date		20070906
 %define	rel		1
 %define	release		%mkrel 1.%{date}.%{rel}
 %define	lib_name_orig	lib%{name}
