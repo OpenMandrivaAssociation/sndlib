@@ -19,6 +19,7 @@ License:	BSD-like
 Group:		System/Libraries
 URL:		http://www-ccrma.stanford.edu/software/snd/sndlib/
 Summary:	SndLib is a library of sound-related functions
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: 	guile-devel
 BuildRequires: 	alsa-lib-devel
 
