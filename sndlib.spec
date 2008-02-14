@@ -48,7 +48,7 @@ sound file headers and data types, and most of the features of the
 audio hardware.
 
 %package -n	%{staticname}
-Summary:	sndlib static library
+Summary:	Sndlib static library
 Group:		Development/C++
 Requires:	%{develname} = %{version}
 Provides:	%{lib_name_orig}-static-devel = %{version}-%{release}
