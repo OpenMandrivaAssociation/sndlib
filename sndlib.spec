@@ -5,7 +5,7 @@
 # Actually, they don't seem to be updating it reliably, so
 # just go with today's date...
 %define date		20070906
-%define	rel		1
+%define	rel		2
 %define	release		%mkrel 1.%{date}.%{rel}
 %define	lib_name_orig	lib%{name}
 %define develname	%mklibname %{name} -d
