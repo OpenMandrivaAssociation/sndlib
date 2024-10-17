@@ -17,7 +17,7 @@ Release:        %{release}
 Source0:	ftp://ccrma-ftp.stanford.edu/pub/Lisp/%{name}.tar.gz
 License:	BSD-like
 Group:		System/Libraries
-URL:		http://www-ccrma.stanford.edu/software/snd/sndlib/
+URL:		https://www-ccrma.stanford.edu/software/snd/sndlib/
 Summary:	Library of sound-related functions
 BuildRequires: 	guile-devel
 BuildRequires: 	pkgconfig(alsa)
