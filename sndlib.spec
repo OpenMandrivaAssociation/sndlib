@@ -19,6 +19,11 @@ License:	BSD-like
 Group:		System/Libraries
 URL:		https://www-ccrma.stanford.edu/software/snd/sndlib/
 Summary:	Library of sound-related functions
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires: 	guile-devel
 BuildRequires: 	pkgconfig(alsa)
 
